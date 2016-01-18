@@ -1,37 +1,41 @@
 var cart = (function(){
 
-	var btn = document.querySelectorAll("button");
-	var arraItens = [];
+		var cart    = JSON.parse(localStorage.getItem("cart"));
+		((cart == null) ? cart = [] : "");
+		
+		var btnItem = document.querySelectorAll("button");
+		var result  = document.querySelector(".result");
+			
+		function addItem(index){
+			
+			function getItem(){
+	    // recuperando dados do item
+	    var getItem   = btnItem[index].parentNode.parentNode,
+	        id        = index + 1,
+	        name      = getItem.querySelector(".product-name").innerText,
+	        price     = getItem.querySelector(".product-price").innerText,
+	        qty       = 0;
 
-	function addItem(index){
+	    // criando objeto item
+					var item = {
+						id : id,
+						name : name,
+						price : price,
+						qty : qty
+					}
+					return item;
+			}
 
-		function clickItem(){
-			// recuperando dados do item
-			var getItem   = btn[index].parentNode.parentNode,
-							id        = index + 1,
-							name      = getItem.querySelector(".product-name").innerText,
-							price     = getItem.querySelector(".product-price").innerText,
-							qty       = 0;
-
-			// convertendo array em string
-			var item   = 
-							{
-								id : id,
-								name : name,
-								price : price,
-								qty : qty
-							};
-			arraItens.push(item);
-
-			// salvando string no localstorage
-			localStorage.setItem("cart", JSON.stringify(arraItens));
-
+			function saveItem(){
+					cart.push(getItem());
+					localStorage.setItem("cart", JSON.stringify(cart));
+					console.log("item(s) salvo(s)");
+			}
+			
+			btnItem[index].addEventListener("click", saveItem, true);
 		}
 
-		btn[index].addEventListener("click", clickItem, true);			
-	}
-
-	for(var i = 0; i < btn.length; i++){
-		addItem(i);
-	}
+		for(var i = 0; i < btnItem.length; i++){
+			addItem(i);
+		}
 }())
