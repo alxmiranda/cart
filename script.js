@@ -5,7 +5,13 @@ var cart = (function(){
 		
 		var btnItem = document.querySelectorAll("button");
 		var result  = document.querySelector(".result");
-			
+		var cartTotal = document.querySelector(".cart p span");
+		
+		var nItens    = function(){
+		 cartTotal.innerText = cart.length;
+		};
+		nItens();
+
 		function addItem(index){
 			
 			function getItem(){
@@ -29,7 +35,7 @@ var cart = (function(){
 			function saveItem(){
 					cart.push(getItem());
 					localStorage.setItem("cart", JSON.stringify(cart));
-					console.log("item(s) salvo(s)");
+					nItens();
 			}
 			
 			btnItem[index].addEventListener("click", saveItem, true);
@@ -39,3 +45,7 @@ var cart = (function(){
 			addItem(i);
 		}
 }())
+
+
+
+
