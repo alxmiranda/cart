@@ -1,5 +1,4 @@
 var cart = (function(){
-
 		var cart    = JSON.parse(localStorage.getItem("cart"));
 		((cart == null) ? cart = [] : "");
 		
