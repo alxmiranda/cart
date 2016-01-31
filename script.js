@@ -45,7 +45,3 @@ var cart = (function(){
 			addItem(i);
 		}
 }())
-
-
-
-
