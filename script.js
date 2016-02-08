@@ -3,7 +3,6 @@ var cart = (function(){
 		((cart == null) ? cart = [] : "");
 		
 		var btnItem = document.querySelectorAll("button");
-		var result  = document.querySelector(".result");
 		var cartTotal = document.querySelector(".cart p span");
 		
 		var nItens    = function(){
