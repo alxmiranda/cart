@@ -1,45 +1,39 @@
-var cart = (function(){
-		var cart    = JSON.parse(localStorage.getItem("cart"));
-		((cart == null) ? cart = [] : "");
-		
-		var btnItem = document.querySelectorAll("button");
-		var cartTotal = document.querySelector(".cart p span");
-		
-		var nItens    = function(){
-		 cartTotal.innerText = cart.length;
-		};
-		nItens();
+var BudgetCart = function(){
+  'use strict'
 
-		function addItem(index){
-			
-			function getItem(){
-	    // recuperando dados do item
-	    var getItem   = btnItem[index].parentNode.parentNode,
-	        id        = index + 1,
-	        name      = getItem.querySelector(".product-name").innerText,
-	        price     = getItem.querySelector(".product-price").innerText,
-	        qty       = 0;
+  var _ = this;
 
-	    // criando objeto item
-					var item = {
-						id : id,
-						name : name,
-						price : price,
-						qty : qty
-					}
-					return item;
-			}
+  _.config = {
+   cartStorage : JSON.parse(localStorage.getItem("BudgetCart")),
+   btnItem     : Array.prototype.slice.call(document.querySelectorAll(".product-add")),
+   cartTotal   : document.querySelector(".cart p span"),
+  };
 
-			function saveItem(){
-					cart.push(getItem());
-					localStorage.setItem("cart", JSON.stringify(cart));
-					nItens();
-			}
-			
-			btnItem[index].addEventListener("click", saveItem, true);
-		}
+  _.nItens = function () {
+   _.config.cartTotal.innerText = _.config.cartStorage.length;
+  };
+  
+  _.saveItem = function(el, i){
 
-		for(var i = 0; i < btnItem.length; i++){
-			addItem(i);
-		}
-}())
+    var itemDetails = {};
+    
+    itemDetails.id    = i;
+    itemDetails.name  = el.parentNode.parentNode.querySelector(".product-name").innerText;
+    itemDetails.price = el.parentNode.parentNode.querySelector(".product-price").innerText;
+    
+    _.config.cartStorage.push(itemDetails);
+    localStorage.setItem("BudgetCart", JSON.stringify(_.config.cartStorage));
+    _.nItens();
+  };
+
+  ((_.config.cartStorage === null) ? _.config.cartStorage = [] : "");
+  
+  _.nItens();
+
+  _.config.btnItem.forEach(function(el, i, arr){
+   el.addEventListener("click", function(){
+    _.saveItem(el, i)
+   });
+  });
+};
+new BudgetCart();
