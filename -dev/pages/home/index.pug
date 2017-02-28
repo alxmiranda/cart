@@ -1,6 +1,12 @@
-block content
-    article
-        p teste!
+extends ../../templates/index.pug
 
-block scripts
-    script(src="build/js/main.js")
+block content
+	div.card
+		figure.card__thumb
+			img(src="http://s2.glbimg.com/D38qSDGMSMcXGyGnpA1DAffI_s0=/540x304/smart/filters:max-age(3600)/http://s03.video.glbimg.com/x720/5687458.jpg", alt="Imagem para teste", class="img")
+		article.card__description
+			.h1 Titulo do produto
+			.p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut voluptatibus accusantium.
+		div.card__actions
+			.btn adicionar
+		

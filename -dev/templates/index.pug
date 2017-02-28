@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 html(lang="en")
-head
-    meta(charset="UTF-8")
-    title Document
-body
-    block content
-    block scripts
+	head
+		meta(charset="UTF-8")
+		title Title of document
+
+		block style
+			link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto:400,700")
+			link(rel="stylesheet", href="build/css/style.css")
+
+	body
+		block content
+		script(src="build/js/main.js")

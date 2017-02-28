@@ -7,8 +7,9 @@ const rename = require("gulp-rename");
 const concat = require("gulp-concat");
 
 const devPaths = {
-    html: '-dev/pages/**/*.pug',
-    css: '-dev/**/*.styl',
+    html: '-dev/**/*.pug',
+    styl: '-dev/style.styl',
+    css: '-dev/**/style.styl',
     js: '-dev/**/script.js'
 }
 
@@ -42,11 +43,17 @@ gulp.task('js', () =>{
 
 // build styl for css
 gulp.task('stylus', () => {
-  return gulp.src(devdPaths.css)
+  return gulp.src(devPaths.styl)
     .pipe(stylus({
       compress: true
     }))
     .pipe(gulp.dest(buildPaths.css));
 });
 
-gulp.task('default', ['server', 'html', 'js'])
+gulp.task('watch', () => {
+    gulp.watch(devPaths.html, ['html']);
+    gulp.watch(devPaths.css, ['stylus']);
+    gulp.watch(devPaths.js, ['js']);
+})
+
+gulp.task('default', ['server', 'html', 'stylus', 'js', 'watch'])
