@@ -1,0 +1,12 @@
+mixin card(data)
+    div.card
+        each item in data.items
+            div.product
+                fingure.product__thumb
+                    img.img(src=item.src alt=item.alt)
+                article.product__description
+                    h1.h1.product__name= item.nameProduct
+                    h2.h2.product__price= item.priceProduct
+                    p.p= item.descriptionProduct
+                div.product__actions
+                    buton.btn= item.labelBtn
