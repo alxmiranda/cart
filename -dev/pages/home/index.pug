@@ -1,7 +1,9 @@
 extends ../../templates/index
 include ../../molecules/card/index
+include ../../molecules/checkout/index
 
 block content
+	+checkout()
 	+card({
 		items:[
 			{
