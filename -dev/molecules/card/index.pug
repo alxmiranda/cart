@@ -9,4 +9,7 @@ mixin card(data)
                     h2.h2.product__price= item.priceProduct
                     p.p= item.descriptionProduct
                 div.product__actions
-                    buton.btn= item.labelBtn
+                    label= "Quantidade"
+                    input(type="text" class="product__quantity")
+                    p.product__feedback
+                    button.product__button-add= item.labelBtn

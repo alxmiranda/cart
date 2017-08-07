@@ -7,8 +7,4 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/build/pages/home/index.html')
 })
 
-app.get('/checkout', (req, res) => {
-  res.sendFile(__dirname + '/build/pages/checkout/index.html')
-})
-
 app.listen(3000, (req, res) => console.log("Aplicação rodando na porta 3000"))
